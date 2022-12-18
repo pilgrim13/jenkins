@@ -16,8 +16,7 @@ pipeline {
         stage('Gradle Project build') {
             steps {
                 sh '''
-                clean
-                bootjar -Pprofile=${PHASE}
+                ./gradlew clean bootJar
                 '''
             }
         }

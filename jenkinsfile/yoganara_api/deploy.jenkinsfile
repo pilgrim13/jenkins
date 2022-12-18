@@ -9,9 +9,11 @@ pipeline {
     // TODO. shared pipeline 공통화 예정
     stage('Checkout Application Git Branch') {
         steps {
-            git credentialsId: '{GITHUB_CREDENTIALS}',
-                url: 'https://github.com/pilgrim13/{REPOSITORY_NAME}.git',
-                branch: 'develop'
+            git branch: '${RELEASE_BRANCH}', credentialsId: 'github_credential', url: 'https://github.com/yoganara/yoganara_api.git'
+
+//             git credentialsId: '{GITHUB_CREDENTIALS}',
+//                 url: 'https://github.com/pilgrim13/{REPOSITORY_NAME}.git',
+//                 branch: 'develop'
         }
         post {
                 failure {

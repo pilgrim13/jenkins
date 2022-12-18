@@ -11,6 +11,7 @@ pipeline {
                 git branch: '${RELEASE_BRANCH}',
                     credentialsId: 'github_credential',
                     url: 'https://github.com/yoganara/yoganara_api.git'
+            }
         }
         stage('Gradle Project build') {
             steps {

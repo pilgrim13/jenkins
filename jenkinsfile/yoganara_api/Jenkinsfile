@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+//   tools {
+//     gradle '6.5'
+//   }
+
+    stages {
+        // TODO. shared pipeline 공통화 예정
+        stage('Checkout Application Git Branch') {
+            steps {
+                git branch: '${RELEASE_BRANCH}',
+                    credentialsId: 'github_credential',
+                    url: 'https://github.com/yoganara/yoganara_api.git'
+        }
+        stage('Gradle Project build') {
+            steps {
+                sh '''
+                clean
+                bootjar -Pprofile=${PHASE}
+                '''
+            }
+        }
+    }
+}

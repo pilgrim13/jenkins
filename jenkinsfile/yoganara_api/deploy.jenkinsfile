@@ -1,0 +1,27 @@
+pipeline {
+  agent any
+  tools {
+    gradle '6.5'
+  }
+
+  stages {
+
+    // TODO. shared pipeline 공통화 예정
+    stage('Checkout Application Git Branch') {
+        steps {
+            git credentialsId: '{GITHUB_CREDENTIALS}',
+                url: 'https://github.com/pilgrim13/{REPOSITORY_NAME}.git',
+                branch: 'develop'
+        }
+        post {
+                failure {
+                  echo 'Repository clone failure !'
+                }
+                success {
+                  echo 'Repository clone success !'
+                }
+        }
+    }
+  }
+
+}

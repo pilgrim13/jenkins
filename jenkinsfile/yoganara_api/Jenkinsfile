@@ -1,8 +1,8 @@
 pipeline {
     agent any
-//   tools {
-//     gradle '6.5'
-//   }
+  tools {
+    gradle 'Gradle 6.5'
+  }
 
     stages {
         // TODO. shared pipeline 공통화 예정

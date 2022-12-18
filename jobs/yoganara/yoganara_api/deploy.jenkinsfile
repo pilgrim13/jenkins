@@ -1,0 +1,27 @@
+// Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent any
+    stages {
+        stage('Clone') {
+                steps {
+                    echo 'Clone'
+                    git branch: 'master', credentialsId: 'github_credential', url: 'https://github.com/yoganara/yoganara_api.git'
+                }
+             }
+        stage('Build') {
+            steps {
+                // 	"빌드" 단계와 관련된 몇 가지 단계를 수행합니다.
+            }
+        }
+        stage('Test') {
+            steps {
+                // 	"테스트" 단계와 관련된 몇 가지 단계를 수행합니다.
+            }
+        }
+        stage('Deploy') {
+            steps {
+                //  "배포" 단계와 관련된 몇 가지 단계를 수행합니다.
+            }
+        }
+    }
+}

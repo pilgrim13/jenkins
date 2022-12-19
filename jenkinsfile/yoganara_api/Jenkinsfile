@@ -1,16 +1,24 @@
+#!groovy
 pipeline {
     agent any
-  tools {
-    gradle 'Gradle 6.5'
-  }
+    options {
+        timeout(time: 10, unit: "MINUTES")
+        timestamps()
+    }
+    tools {
+        jdk('java8')
+        gradle 'Gradle 6.5'
+    }
 
     stages {
-        // TODO. shared pipeline 공통화 예정
+        stage('Clean Workspace') {
+
+        }
         stage('Checkout Application Git Branch') {
             steps {
                 git branch: '${RELEASE_BRANCH}',
-                    credentialsId: 'github_credential',
-                    url: 'https://github.com/yoganara/yoganara_api.git'
+                        credentialsId: 'github_credential',
+                        url: 'https://github.com/yoganara/yoganara_api.git'
             }
         }
         stage('Gradle Project build') {
